@@ -1,0 +1,21 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+img = cv2.imread("/content/zeep image.jpeg")
+img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+rows, cols = img.shape[:2]
+
+
+pts1 = np.float32([[50, 50], [200, 50], [50, 200]])
+pts2 = np.float32([[10, 100], [200, 50], [100, 250]])
+
+
+M = cv2.getAffineTransform(pts1, pts2)
+affine_img = cv2.warpAffine(img, M, (cols, rows))
+
+plt.imshow(affine_img)
+plt.title("Affine Transformed Image")
+plt.axis("off")
