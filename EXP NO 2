@@ -1,0 +1,44 @@
+import cv2
+from google.colab.patches import cv2_imshow
+
+cap = cv2.VideoCapture("/content/178826-860734645_medium.mp4")
+
+print("Press 'n' for Normal Speed")
+print("Press 's' for Slow Motion")
+print("Press 'f' for Fast Motion")
+print("Press 'q' to Quit")
+
+mode = 'n'
+frame_count = 0
+
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    cv2_imshow(frame)
+
+    key = cv2.waitKey(25) & 0xFF
+
+    if key == ord('n'):
+        mode = 'n'
+    elif key == ord('s'):
+        mode = 's'
+    elif key == ord('f'):
+        mode = 'f'
+    elif key == ord('q'):
+        break
+
+    if mode == 'n':     
+        cv2.waitKey(25)
+
+    elif mode == 's':   
+        cv2.waitKey(100)
+
+    elif mode == 'f':   
+        frame_count += 1
+        if frame_count % 3 != 0:
+            continue
+
+cap.release()
+cv2.destroyAllWindows()
