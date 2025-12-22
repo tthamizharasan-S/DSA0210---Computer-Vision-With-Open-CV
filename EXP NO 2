@@ -1,0 +1,19 @@
+import cv2
+from IPython.display import display, clear_output
+from PIL import Image
+import time
+video_path = "/content/sample_video.mp4"
+cap = cv2.VideoCapture(video_path)
+print("Playing video...")
+print("Slow motion and fast motion demonstration")
+delay= 0.01 #normal speed
+while cap.isOpened():
+ret, frame cap.read()
+if not ret:
+break
+frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+img = Image.fromarray(frame)
+clear_output(wait=True)
+display(img)
+time.sleep(delay)
+cap.release()
