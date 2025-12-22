@@ -1,0 +1,31 @@
+import cv2
+import numpy as np
+from IPython.display import display, clear_output
+from PIL import Image
+import time
+
+
+video_path = "/content/EXP 9.jpg"
+
+
+cap = cv2.VideoCapture(video_path)
+
+pts1 = np.float32([[50, 50], [300, 50], [50, 300], [300, 300]])
+pts2 = np.float32([[0, 0], [300, 0], [0, 300], [300, 300]])
+
+
+M = cv2.getPerspectiveTransform(pts1, pts2)
+
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    warped = cv2.warpPerspective(frame, M, (300, 300))
+    warped = cv2.cvtColor(warped, cv2.COLOR_BGR2RGB)
+
+    clear_output(wait=True)
+    display(Image.fromarray(warped))
+    time.sleep(0.05)
+
+cap.release()
