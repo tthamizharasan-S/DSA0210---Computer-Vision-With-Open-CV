@@ -1,0 +1,13 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow 
+image_path = '/content/zeep image.jpeg' 
+img = cv2.imread(image_path)
+if img is None:
+    print(f"Error: Could not load image from {image_path}. Please check the path and file format.")
+else:
+    rows, cols = img.shape[:2]
+    M = np.float32([[1, 0, 100], [0, 1, 50]])
+    moved_img = cv2.warpAffine(img, M, (cols, rows))
+    cv2_imshow(img)
+    cv2_imshow(moved_img)
