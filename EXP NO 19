@@ -1,0 +1,19 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+image = cv2.imread('/content/tiger.jpg')
+
+blurred = cv2.GaussianBlur(image, (9, 9), 0)
+
+mask = cv2.subtract(image, blurred)
+
+sharpened = cv2.add(image, mask)
+
+cv2_imshow(image)
+cv2_imshow(blurred)
+cv2_imshow(mask)
+cv2_imshow(sharpened)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
