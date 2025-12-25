@@ -1,0 +1,15 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+img = cv2.imread('/content/MOON123.jpg', cv2.IMREAD_GRAYSCALE)
+
+sobely = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
+
+sobely = cv2.convertScaleAbs(sobely)
+
+cv2_imshow(img)
+cv2_imshow(sobely)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
