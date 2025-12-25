@@ -1,0 +1,17 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+img = cv2.imread('/content/ZEBRA45.jpg', cv2.IMREAD_GRAYSCALE)
+
+sobelx = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
+sobely = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
+
+sobelxy = cv2.addWeighted(cv2.convertScaleAbs(sobelx), 0.5,
+                          cv2.convertScaleAbs(sobely), 0.5, 0)
+
+cv2_imshow(img)
+cv2_imshow(sobelxy)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
