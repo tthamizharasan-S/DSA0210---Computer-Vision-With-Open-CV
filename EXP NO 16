@@ -1,0 +1,21 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+image = cv2.imread('/content/exp 16.jpeg')
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+laplacian_mask = np.array([[0, 1, 0],
+                           [1, -4, 1],
+                           [0, 1, 0]])
+
+laplacian = cv2.filter2D(gray, -1, laplacian_mask)
+
+sharpened = cv2.subtract(gray, laplacian)
+
+cv2_imshow(gray)
+cv2_imshow(laplacian)
+cv2_imshow(sharpened)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
