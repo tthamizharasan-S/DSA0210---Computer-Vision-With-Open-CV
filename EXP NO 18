@@ -1,0 +1,25 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+image = cv2.imread("/content/exp 18.jpeg")
+
+if image is None:
+    print("Image not found. Check the file path!")
+    exit()
+
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+laplacian_mask = np.array([
+    [0, -1, 0],
+    [-1, 5, -1],
+    [0, -1, 0]
+])
+
+sharpened = cv2.filter2D(gray, -1, laplacian_mask)
+
+cv2_imshow(gray)
+cv2_imshow(sharpened)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
