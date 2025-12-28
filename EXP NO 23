@@ -1,0 +1,9 @@
+import cv2
+from google.colab.patches import cv2_imshow
+
+img = cv2.imread("/content/ANIAML.avif")
+
+crop = img[100:300, 100:300]
+img[0:200, 0:200] = crop
+
+cv2_imshow(img)
