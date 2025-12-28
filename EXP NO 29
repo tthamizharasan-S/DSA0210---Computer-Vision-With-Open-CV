@@ -1,0 +1,9 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow 
+
+img = cv2.imread("/content/HORSE.jpg", 0)
+kernel = np.ones((5,5), np.uint8)
+gradient = cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel)
+
+cv2_imshow(gradient) 
