@@ -1,0 +1,9 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+img = cv2.imread("/content/ELEPHANT.jpg", 0)
+kernel = np.ones((5,5), np.uint8)
+opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+
+cv2_imshow(opening)
