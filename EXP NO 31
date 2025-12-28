@@ -1,0 +1,9 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow 
+
+img = cv2.imread("/content/DOG.jpg", 0)
+kernel = np.ones((5,5), np.uint8)
+blackhat = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel)
+
+cv2_imshow(blackhat) 
