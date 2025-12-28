@@ -1,0 +1,13 @@
+import cv2
+from google.colab.patches import cv2_imshow
+
+img = cv2.imread("/content/WhatsApp Image 2025-12-28 at 9.19.20 PM.jpeg", 0)
+template = cv2.imread("/content/WhatsApp Image 2025-12-28 at 9.22.02 PM.jpeg", 0)
+
+res = cv2.matchTemplate(img, template, cv2.TM_CCOEFF_NORMED)
+min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+
+h, w = template.shape
+cv2.rectangle(img, max_loc, (max_loc[0]+w, max_loc[1]+h), 255, 2)
+
+cv2_imshow(img) 
