@@ -1,0 +1,10 @@
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow 
+
+img = cv2.imread("/content/rabbit.webp", 0)
+kernel = np.ones((5,5), np.uint8)
+erosion = cv2.erode(img, kernel, 1)
+
+cv2_imshow(erosion) # Use cv2_imshow instead
+# cv2.waitKey(0) # cv2.waitKey(0) is not needed with cv2_imshow in Colab
