@@ -1,0 +1,16 @@
+import cv2
+from google.colab.patches import cv2_imshow
+
+cap = cv2.VideoCapture("/content/Sample.mp4")
+
+frames = []
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+    frames.append(frame)
+
+for f in reversed(frames):
+    cv2_imshow(f)
+    if cv2.waitKey(30) == 27:
+        break
