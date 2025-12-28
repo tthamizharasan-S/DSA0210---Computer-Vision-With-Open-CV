@@ -1,0 +1,13 @@
+import cv2
+import numpy as np
+import IPython.display as display
+from matplotlib import pyplot as plt
+import io
+import base64
+from google.colab.patches import cv2_imshow 
+img = cv2.imread("/content/SPARROW.avif", 0)
+kernel = np.array([[-1, -1, -1],
+                   [-1,  8, -1],
+                   [-1, -1, -1]])
+boundary = cv2.filter2D(img, -1, kernel)
+cv2_imshow(boundary)
