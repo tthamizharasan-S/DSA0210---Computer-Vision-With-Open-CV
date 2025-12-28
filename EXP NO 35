@@ -1,0 +1,16 @@
+import cv2
+from google.colab.patches import cv2_imshow
+
+img = cv2.imread("/content/PARROT.webp")
+
+x, y, w, h = 100, 100, 200, 200
+
+cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+crop = img[y:y+h, x:x+w]
+
+cv2_imshow(img)
+cv2_imshow(crop)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
