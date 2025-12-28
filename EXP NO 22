@@ -1,0 +1,9 @@
+import cv2
+from google.colab.patches import cv2_imshow
+
+img = cv2.imread("/content/LION.avif")
+watermark = cv2.putText(img.copy(), "WATERMARK",
+                        (50, 50), cv2.FONT_HERSHEY_SIMPLEX,
+                        1, (255,255,255), 2)
+
+cv2_imshow(watermark)
